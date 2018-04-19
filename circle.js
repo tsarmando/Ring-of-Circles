@@ -4,7 +4,7 @@ window.onload = function (){
 		ctx = canvas.getContext("2d"),
 		width = canvas.width = window.innerWidth,
 		height = canvas.height = window.innerHeight;
-	var y_0= height *.5, x_0 = width*.5;
+	var y_0= height *.5, x_0 = width*.5; //represents orgin
 
 	var dist = (p1,p2) =>  Math.sqrt(Math.pow(p2[0] - p1[0],2) +  Math.pow( p2[1] - p1[1],2))
 
@@ -16,9 +16,16 @@ window.onload = function (){
 		theta += delta; 
 		ctx.beginPath();
 		ctx.arc(x_0+r* Math.sin(theta),y_0+r * Math.cos(theta),r0,0,Math.PI*2, false);
-		ctx.fill();
+		ctx.stroke();
 	}
+	return r0
 	}
-kissing(20,100)
+//kissing(20,kissing(2,25)+27)
+kissing(2,40)
+//kissing(3,75)
+
+//kissing(4,100)
+//kissing(5,120)
+kissing(300,500)
 }
 
