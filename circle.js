@@ -8,8 +8,8 @@ window.onload = function (){
 		const y_0 = height *.5, x_0 = width*.5; 
 
 	const dist = (p1,p2) =>  Math.sqrt(Math.pow(p2[0] - p1[0],2) +  Math.pow( p2[1] - p1[1],2))
-
-	const kissing = (n,r, alpha, color) => {//number of circles, radius they lie on
+	//number of circles, radius they lie on, rotation on circle, color
+	const kissing = (n,r, alpha, color) => {
 		const delta = 2*Math.PI/n+alpha, 
 		//distance between two kissing with centers on same circle
 		r0 = dist([x_0+r*Math.sin(0),y_0+r*Math.cos(0)], [x_0+r*Math.sin(delta),y_0+r*Math.cos(delta)])/2 
@@ -18,7 +18,7 @@ window.onload = function (){
 			theta += delta; 
 			ctx.beginPath();
 			ctx.arc(x_0+r* Math.sin(theta),y_0+r * Math.cos(theta),r0,0,Math.PI*2, false);
-			ctx.strokeStyle = "green" 
+			ctx.strokeStyle = color 
 			ctx.stroke();
 		}
 		//return [r+r0,r0]
@@ -39,22 +39,18 @@ window.onload = function (){
 
 	let animArr = []
 	let angle = 0;
-		for(let k = 15; k<30; k++){
+	//good for init k = 25-29
+		for(let k = 29; k<30; k++){
 			animArr.push(new Ring(k,65,angle,"black"))
-		//	kissing(k,65,angle, "black")
-		//	console.log(k, newR,x)
 			for(j = 0; j< height; j+=50){ 
 				animArr.push(new Ring(k,100+j,angle,"black")) 
 			}
 		}
-	const go = () => { ticks = 0; setInterval(animate,300)}
+	const go = () => { steps= 0; setInterval(animate,80)}//50-100ms good?
 	const animate = () => {
-	//	const startTime = performance.now();
-		ticks++
+		steps++
 		ctx.clearRect(0,0,width,height)
-		animArr.forEach( el => el.draw(angle+ticks*Math.PI/360)) 
-	      //const duration = performance.now() - startTime;
-              //console.log(`someMethodIThinkMightBeSlow took ${duration}ms`,ticks);
+		animArr.forEach( el => el.draw((steps%3600)*Math.PI/1800)) 
 	}
-	go()
+go()
 }
