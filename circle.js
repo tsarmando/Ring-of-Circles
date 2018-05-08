@@ -3,9 +3,9 @@ window.onload = function (){
 	const canvas = document.getElementById("canvas"),
 		ctx = canvas.getContext("2d"),
 		width = canvas.width = window.innerWidth,
-		height = canvas.height = window.innerHeight;
+		height = canvas.height = window.innerHeight
 		//represent orgin:
-		const y_0 = height *.5, x_0 = width*.5; 
+	const y_0 = height *.5, x_0 = width*.5 
 
 	const dist = (p1,p2) =>  Math.sqrt(Math.pow(p2[0] - p1[0],2) +  Math.pow( p2[1] - p1[1],2))
 	//number of circles, radius they lie on, rotation on circle, color
@@ -15,9 +15,9 @@ window.onload = function (){
 		r0 = dist([x_0+r*Math.sin(0),y_0+r*Math.cos(0)], [x_0+r*Math.sin(delta),y_0+r*Math.cos(delta)])/2 
 		let theta = 0
 		for(let i = 0; i<n;i++){
-			theta += delta; 
-			ctx.beginPath();
-			ctx.arc(x_0+r* Math.sin(theta),y_0+r * Math.cos(theta),r0,0,Math.PI*2, false);
+			theta += delta 
+			ctx.beginPath()
+			ctx.arc(x_0+r* Math.sin(theta),y_0+r * Math.cos(theta),r0,0,Math.PI*2, false)
 			ctx.strokeStyle = color 
 			ctx.stroke();
 		}
