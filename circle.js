@@ -42,15 +42,18 @@ window.onload = function (){
 	//good for init k = 25-29
 		for(let k = 29; k<30; k++){
 			animArr.push(new Ring(k,65,angle,"black"))
-			for(j = 0; j< height; j+=50){ 
+			for(let j = 0; j< height; j+=50){ 
 				animArr.push(new Ring(k,100+j,angle,"black")) 
 			}
 		}
 	const go = () => { steps= 0; setInterval(animate,80)}//50-100ms good?
+	let steps = 0;
 	const animate = () => {
 		steps++
 		ctx.clearRect(0,0,width,height)
-		animArr.forEach( el => el.draw((steps%3600)*Math.PI/1800)) 
+		animArr.forEach( el => el.draw((steps%((80/16)*3600))*Math.PI/((80/16)*1800))) 
+		window.requestAnimationFrame(animate)
 	}
-go()
+	animate()
+//	go()
 }
