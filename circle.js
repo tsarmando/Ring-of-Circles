@@ -51,7 +51,7 @@ window.onload = function (){
 	const animate = () => {
 		steps++
 		ctx.clearRect(0,0,width,height)
-		animArr.forEach( el => el.draw((steps%((80/16)*3600))*Math.PI/((80/16)*1800))) 
+		animArr.forEach( el => el.draw((steps%((80/16.67)*3600))*(16.67/80)*Math.PI/(1800))) 
 		window.requestAnimationFrame(animate)
 	}
 	animate()
